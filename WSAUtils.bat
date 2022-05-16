@@ -6,7 +6,6 @@ tasklist /fi "ImageName eq WsaService.exe" /fo csv 2>NUL | find /I "WsaService.e
 if "%ERRORLEVEL%"=="0"  (goto :start)  else (goto :retry)
 
 :start
-break>.\logs.txt
 timeout 2 >nul
 echo ****************************************************
 ping localhost -n 1> nul
