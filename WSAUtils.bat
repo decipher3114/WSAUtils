@@ -5,6 +5,7 @@ setlocal EnableDelayedExpansion
 tasklist /fi "ImageName eq WsaService.exe" /fo csv 2>NUL | find /I "WsaService.exe">NUL
 if "%ERRORLEVEL%"=="0"  (goto :start)  else (goto :retry)
 
+
 :start
 timeout 2 >nul
 echo ****************************************************
@@ -24,8 +25,6 @@ ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
-
-
 ping localhost -n 1> nul
 echo Voila! WSA is Running ...
 ping localhost -n 1> nul
@@ -54,6 +53,7 @@ if /i "%number%" == "2" goto :pull
 if /i "%number%" == "3" goto :install
 if /i "%number%" == "4" goto :config
 if /i "%number%" == "5" goto :exit
+
 
 :retry
 timeout 2 >nul
@@ -89,6 +89,7 @@ ping localhost -n 1> nul
 pause >nul
 exit /b
 
+
 :push
 timeout 1 >nul
 echo ****************************************************
@@ -113,11 +114,8 @@ echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
 ping localhost -n 1> nul
-
 (set /p port= ) < port.txt
-
 set /p path=Enter path or Drag and drop file here:
-
 .\adb.exe start-server
 echo.
 .\adb.exe connect localhost:%port%
@@ -129,6 +127,7 @@ echo.
 pause
 cls
 goto :start
+
 
 :pull
 timeout 1 >nul
@@ -154,14 +153,11 @@ echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
 ping localhost -n 1> nul
-
-
 (set /p port= ) < port.txt
 echo.
 echo Enter path of file from WSA. For Example: Download/image.png. Don't include "/storage/emulated/0/"
 echo.
 set /p path=Enter here:
-
 .\adb.exe start-server
 echo.
 .\adb.exe connect localhost:%port%
@@ -173,6 +169,7 @@ echo.
 pause
 cls
 goto :start
+
 
 :install
 timeout 1 >nul
@@ -198,12 +195,8 @@ echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
 ping localhost -n 1> nul
-
-
 (set /p port= ) < port.txt
-
 set /p apk=Enter path or Drag and drop .apk file:
-
 .\adb.exe start-server
 echo.
 .\adb.exe connect localhost:%port%
@@ -255,7 +248,6 @@ ping localhost -n 1> nul
 echo So, don't run this unless you need to change.
 ping localhost -n 1> nul
 echo.
-
 ping localhost -n 1> nul
 mkdir ".\WSA Files" > nul
 break>.\port.txt
@@ -265,7 +257,7 @@ echo "ADB can be connected to 127.0.0.1:PORT". It is a 5-digit number.
 echo.
 set /p port=Enter Port here:
 (echo=%port%) >> port.txt
-
+echo.
 .\adb.exe kill-server > nul
 echo.
 .\adb.exe start-server > nul
@@ -273,7 +265,6 @@ echo.
 .\adb.exe connect localhost:%port%
 echo.
 .\adb shell mkdir -m 777 /storage/emulated/0/Windows > nul
-echo.
 echo.
 echo Files from WSA will be saved in folder "WSA Files" in current directory.
 echo.
@@ -313,5 +304,6 @@ ping localhost -n 1> nul
 echo ****************************************************
 ping localhost -n 1> nul
 .\adb.exe kill-server
-timeout 3 > nul
+echo Press any key to exit...
+pause > nul
 exit /b
