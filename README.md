@@ -1,7 +1,7 @@
 # WSAUtils
 Simple scripts for pulling, pushing files and installing apps in WSA.
 
-This contains ADB files as well along with scripts.< /br>
+This contains ADB files as well along with scripts.<br />
 No need to install adb separately.
 
 # Setup
