@@ -7,7 +7,7 @@ if "%ERRORLEVEL%"=="0"  (goto :start)  else (goto :retry)
 
 :start
 break>.\logs.txt
-timeout 3 >nul
+timeout 2 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -57,7 +57,7 @@ if /i "%number%" == "4" goto :config
 if /i "%number%" == "5" goto :exit
 
 :retry
-timeout 3 >nul
+timeout 2 >nul
 echo ****************************************************
 echo *                                                  *
 ping localhost -n 1> nul
@@ -91,7 +91,7 @@ pause >nul
 exit /b
 
 :push
-timeout 3 >nul
+timeout 1 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -121,9 +121,9 @@ set /p path=Enter path or Drag and drop file here:
 
 .\adb.exe start-server
 echo.
-.\adb.exe connect localhost:%port% >.\logs.txt
+.\adb.exe connect localhost:%port%
 echo.
-.\adb.exe push %path% /storage/emulated/0/Windows  >.\logs.txt
+.\adb.exe push %path% /storage/emulated/0/Windows
 echo.
 echo File saved to "Windows" folder in WSA.
 echo.
@@ -132,7 +132,7 @@ cls
 goto :start
 
 :pull
-timeout 3 >nul
+timeout 1 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -163,11 +163,11 @@ echo Enter path of file from WSA. For Example: Download/image.png. Don't include
 echo.
 set /p path=Enter here:
 
-.\adb.exe start-server >.\logs.txt
+.\adb.exe start-server
 echo.
-.\adb.exe connect localhost:%port% >.\logs.txt
+.\adb.exe connect localhost:%port%
 echo.
-.\adb.exe pull /storage/emulated/0/%path% ".\WSA Files" >.\logs.txt
+.\adb.exe pull /storage/emulated/0/%path% ".\WSA Files"
 echo.
 echo File saved to folder "WSA Files".
 echo.
@@ -176,7 +176,7 @@ cls
 goto :start
 
 :install
-timeout 3 >nul
+timeout 1 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -205,9 +205,9 @@ ping localhost -n 1> nul
 
 set /p apk=Enter path or Drag and drop .apk file:
 
-.\adb.exe start-server >.\logs.txt
+.\adb.exe start-server
 echo.
-.\adb.exe connect localhost:%port% >.\logs.txt
+.\adb.exe connect localhost:%port%
 echo.
 .\adb.exe install %apk%
 pause
@@ -216,7 +216,7 @@ goto :start
 
 
 :config
-timeout 3 >nul
+timeout 1 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -262,14 +262,13 @@ break>.\port.txt
 set /p port=Enter WSA port number here:
 (echo=%port%) >> port.txt
 
-.\adb.exe kill-server >.\logs.txt
+.\adb.exe kill-server
 echo.
-.\adb.exe start-server >.\logs.txt
+.\adb.exe start-server
 echo.
-.\adb.exe connect localhost:%port% >.\logs.txt
+.\adb.exe connect localhost:%port%
 echo.
-.\adb shell mkdir -m 777 /storage/emulated/0/ >.\logs.txt
-.\adb shell mkdir /storage/emulated/0/Windows >.\logs.txt
+.\adb shell mkdir -m 777 /storage/emulated/0/Windows
 echo.
 echo.
 echo Files from WSA will be saved in folder "WSA Files" in current directory.
