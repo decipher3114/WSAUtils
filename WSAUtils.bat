@@ -256,18 +256,18 @@ echo So, don't run this unless you need to change.
 ping localhost -n 1> nul
 
 ping localhost -n 1> nul
-mkdir ".\WSA Files"
+mkdir ".\WSA Files" > nul
 break>.\port.txt
 set /p port=Enter WSA port number here:
 (echo=%port%) >> port.txt
 
-.\adb.exe kill-server
+.\adb.exe kill-server > nul
 echo.
-.\adb.exe start-server
+.\adb.exe start-server > nul
 echo.
 .\adb.exe connect localhost:%port%
 echo.
-.\adb shell mkdir -m 777 /storage/emulated/0/Windows
+.\adb shell mkdir -m 777 /storage/emulated/0/Windows > nul
 echo.
 echo.
 echo Files from WSA will be saved in folder "WSA Files" in current directory.
