@@ -7,7 +7,7 @@ if "%ERRORLEVEL%"=="0"  (goto :start)  else (goto :retry)
 
 :start
 break>.\logs.txt
-timeout 5 >nul
+timeout 3 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -57,7 +57,7 @@ if /i "%number%" == "4" goto :config
 if /i "%number%" == "5" goto :exit
 
 :retry
-timeout 5 >nul
+timeout 3 >nul
 echo ****************************************************
 echo *                                                  *
 ping localhost -n 1> nul
@@ -91,7 +91,7 @@ pause >nul
 exit /b
 
 :push
-timeout 5 >nul
+timeout 3 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -132,7 +132,7 @@ cls
 goto :start
 
 :pull
-timeout 5 >nul
+timeout 3 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -176,7 +176,7 @@ cls
 goto :start
 
 :install
-timeout 5 >nul
+timeout 3 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -216,7 +216,7 @@ goto :start
 
 
 :config
-timeout 5 >nul
+timeout 3 >nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
