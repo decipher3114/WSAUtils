@@ -1,9 +1,9 @@
 @echo off
 
 tasklist /fi "ImageName eq WsaService.exe" /fo csv 2>NUL | find /I "WsaService.exe">NUL
-if "%ERRORLEVEL%"=="0"  (goto :start)  else (goto :retry)
+if "%ERRORLEVEL%"=="0"  (goto :main)  else (goto :nowsa)
 
-:start
+:main
 timeout 2 > nul
 echo ****************************************************
 ping localhost -n 1> nul
@@ -22,39 +22,29 @@ ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
-ping localhost -n 1> nul
 echo Voila! WSA is Running ...
-ping localhost -n 1> nul
 echo.
-ping localhost -n 1> nul
 echo What do you want to do?
-ping localhost -n 1> nul
 echo.
-ping localhost -n 1> nul
 echo 1. Send file to WSA
-ping localhost -n 1> nul
 echo 2. Fetch file from WSA
-ping localhost -n 1> nul
 echo 3. Install Apk
-ping localhost -n 1> nul
 echo 4. Configure Script
-ping localhost -n 1> nul
 echo 5. Exit
-ping localhost -n 1> nul
 echo.
-ping localhost -n 1> nul
 set /p number= Enter number:
 cls
-if /i "%number%" == "1" goto :push
-if /i "%number%" == "2" goto :pull
-if /i "%number%" == "3" goto :install
-if /i "%number%" == "4" goto :config
-if /i "%number%" == "5" goto :exit
+if /i "%number%" == "1" goto :pushfile
+if /i "%number%" == "2" goto :pullfile
+if /i "%number%" == "3" goto :installapk
+if /i "%number%" == "4" goto :configrun
+if /i "%number%" == "5" goto :exitmain
 
 
-:retry
-timeout 2 >nul
+:nowsa
+timeout 2 > nul
 echo ****************************************************
+ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo *                    WSA Utils                     *
@@ -78,17 +68,16 @@ ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
-ping localhost -n 1> nul
 echo.
-ping localhost -n 1> nul
+.\adb.exe kill-server
+echo.
 echo Press any key to exit.
-ping localhost -n 1> nul
-pause >nul
+pause > nul
 exit /b
 
 
-:push
-timeout 1 >nul
+:pushfile
+timeout 1 > nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -110,24 +99,22 @@ ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
-ping localhost -n 1> nul
-(set /p port= ) < port.txt
-set /p path=Enter path or Drag and drop file here:
+(set /p wsaport= ) < port.txt
+set /p winpath=Enter path or Drag and drop file here:
 .\adb.exe start-server
 echo.
-.\adb.exe connect localhost:%port%
+.\adb.exe connect localhost:%wsaport%
 echo.
-.\adb.exe push %path% /storage/emulated/0/Windows
+.\adb.exe push %winpath% "/storage/emulated/0/Windows"
 echo.
 echo File saved to "Windows" folder in WSA.
-echo.
 pause
 cls
-goto :start
+goto :main
 
 
-:pull
-timeout 1 >nul
+:pullfile
+timeout 1 > nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -147,29 +134,27 @@ ping localhost -n 1> nul
 echo *              Pull files from WSA                 *
 ping localhost -n 1> nul
 echo *                                                  *
-ping localhost -n 1> nul
 echo ****************************************************
-ping localhost -n 1> nul
-(set /p port= ) < port.txt
+(set /p wsaport= ) < port.txt
 echo.
 echo Enter path of file from WSA. For Example: Download/image.png. Don't include "/storage/emulated/0/"
 echo.
-set /p path=Enter here:
+set /p wsapath=Enter here:
 .\adb.exe start-server
 echo.
-.\adb.exe connect localhost:%port%
+.\adb.exe connect localhost:%wsaport%
 echo.
-.\adb.exe pull /storage/emulated/0/%path% ".\WSA Files"
+.\adb.exe pull "/storage/emulated/0/%wsapath%" ".\WSA Files"
 echo.
 echo File saved to folder "WSA Files".
 echo.
 pause
 cls
-goto :start
+goto :main
 
 
-:install
-timeout 1 >nul
+:installapk
+timeout 1 > nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -191,21 +176,20 @@ ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
-ping localhost -n 1> nul
-(set /p port= ) < port.txt
-set /p apk=Enter path or Drag and drop .apk file:
+(set /p wsaport= ) < port.txt
+set /p apkpath=Enter path or Drag and drop .apk file:
 .\adb.exe start-server
 echo.
-.\adb.exe connect localhost:%port%
+.\adb.exe connect localhost:%wsaport%
 echo.
-.\adb.exe install %apk%
+.\adb.exe install %apkpath%
 pause
 cls
-goto :start
+goto :main
 
 
-:config
-timeout 1 >nul
+:configrun
+timeout 1 > nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -229,37 +213,28 @@ ping localhost -n 1> nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo.
-ping localhost -n 1> nul
-echo READ THIS CAREFULLY
-ping localhost -n 1> nul
+echo READ THIS CAREFULLY ...
 echo.
-ping localhost -n 1> nul
 echo This is one time configuration for WSA.
-ping localhost -n 1> nul
 echo.
-ping localhost -n 1> nul
 echo If you Run this file again, this will delete the previous config.
-ping localhost -n 1> nul
 echo.
-ping localhost -n 1> nul
 echo So, don't run this unless you need to change.
-ping localhost -n 1> nul
 echo.
-ping localhost -n 1> nul
 mkdir ".\WSA Files" > nul
 break>.\port.txt
 echo Port number can be found in Windows Subsystem for Android Settings. See the IP address under Developer Options.
 echo.
 echo "ADB can be connected to 127.0.0.1:PORT". It is a 5-digit number.
 echo.
-set /p port=Enter Port here:
-(echo=%port%) >> port.txt
+set /p wsaport=Enter Port here:
+(echo=%wsaport%) >> port.txt
 echo.
 .\adb.exe kill-server > nul
 echo.
 .\adb.exe start-server > nul
 echo.
-.\adb.exe connect localhost:%port%
+.\adb.exe connect localhost:%wsaport%
 echo.
 .\adb shell mkdir -m 777 /storage/emulated/0/Windows > nul
 echo.
@@ -270,12 +245,13 @@ echo.
 echo Configuration Completed.
 pause
 cls
-goto :start
+goto :main
 
 
-:exit
-timeout 1 >nul
+:exitmain
+
 echo ****************************************************
+ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo *                    WSA Utils                     *
