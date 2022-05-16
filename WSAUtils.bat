@@ -254,13 +254,16 @@ echo.
 ping localhost -n 1> nul
 echo So, don't run this unless you need to change.
 ping localhost -n 1> nul
+echo.
 
 ping localhost -n 1> nul
 mkdir ".\WSA Files" > nul
 break>.\port.txt
 echo Port number can be found in Windows Subsystem for Android Settings. See the IP address under Developer Options.
+echo.
 echo "ADB can be connected to 127.0.0.1:PORT". It is a 5-digit number.
-set /p port=Enter Port  here:
+echo.
+set /p port=Enter Port here:
 (echo=%port%) >> port.txt
 
 .\adb.exe kill-server > nul
