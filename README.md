@@ -30,7 +30,7 @@ ADB belongs to Google LLC.
 
 # Issues and Suggestions
 
-All suggestions are welcome.
+All suggestions are welcome./n
 I am a noob. So, this may conatin some bugs and issues. Please report them if you face any.
 
 **Thanks to All**
