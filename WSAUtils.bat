@@ -281,4 +281,31 @@ goto :start
 
 
 :exit
+timeout 2 >nul
+echo ****************************************************
+echo *                                                  *
+ping localhost -n 1> nul
+echo *                    WSA Utils                     *
+ping localhost -n 1> nul
+echo *                                                  *
+ping localhost -n 1> nul
+echo *                 by decipher3114                  *
+ping localhost -n 1> nul
+echo *                                                  *
+ping localhost -n 1> nul
+echo ****************************************************
+ping localhost -n 1> nul
+echo *                                                  *
+ping localhost -n 1> nul
+echo *               Thanks for using !!                *
+ping localhost -n 1> nul
+echo *                                                  *
+ping localhost -n 1> nul
+echo *                See you again                     *
+ping localhost -n 1> nul
+echo *                                                  *
+ping localhost -n 1> nul
+echo ****************************************************
+ping localhost -n 1> nul
+.\adb.exe kill-server
 exit /b
