@@ -258,7 +258,9 @@ ping localhost -n 1> nul
 ping localhost -n 1> nul
 mkdir ".\WSA Files" > nul
 break>.\port.txt
-set /p port=Enter WSA port number here:
+echo Port number can be found in Windows Subsystem for Android Settings. See the IP address under Developer Options.
+echo "ADB can be connected to 127.0.0.1:PORT". It is a 5-digit number.
+set /p port=Enter Port  here:
 (echo=%port%) >> port.txt
 
 .\adb.exe kill-server > nul
