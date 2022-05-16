@@ -286,7 +286,7 @@ goto :start
 
 
 :exit
-timeout 2 >nul
+timeout 1 >nul
 echo ****************************************************
 echo *                                                  *
 ping localhost -n 1> nul
@@ -313,4 +313,5 @@ ping localhost -n 1> nul
 echo ****************************************************
 ping localhost -n 1> nul
 .\adb.exe kill-server
+timeout 3 > nul
 exit /b
