@@ -4,7 +4,6 @@ Simple scripts for pulling, pushing files and installing apps in WSA.
 This contains ADB files as well along with scripts.<br />
 No need to install adb separately.
 
-Don't clone this repo. Download Zip file from [Releases](https://github.com/decipher3114/WSAUtils/releases)
 
 # Setup
 Run configure.bat for initial setup.<br />
