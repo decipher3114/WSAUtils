@@ -17,7 +17,7 @@ This script install Apks to WSA.
 
 This script copies files from Windows to folder "Windows" in WSA.
 
-*Don't change folder name in WSA.
+_Don't change folder name in WSA.
 
 # Pull.bat
 
@@ -33,4 +33,4 @@ ADB belongs to Google LLC.
 All suggestions are welcome.
 I am a noob. So, this may conatin some bugs and issues. Please report them if you face any.
 
-# Thanks to All
+**Thanks to All
