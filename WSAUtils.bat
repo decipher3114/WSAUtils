@@ -1,13 +1,10 @@
 @echo off
 
-setlocal EnableDelayedExpansion
-
 tasklist /fi "ImageName eq WsaService.exe" /fo csv 2>NUL | find /I "WsaService.exe">NUL
 if "%ERRORLEVEL%"=="0"  (goto :start)  else (goto :retry)
 
-
 :start
-timeout 2 >nul
+timeout 2 > nul
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
