@@ -25,7 +25,7 @@ This script copies files from WSA to folder "WSA Files" in current directory.
 
 # ADB
 
-I am not the author of ADB
+I am not the author of ADB.
 ADB belongs to Google LLC.
 
 # Issues and Suggestions
