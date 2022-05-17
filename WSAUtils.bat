@@ -22,7 +22,13 @@ ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
+echo.
 echo Voila! WSA is Running ...
+echo.
+(set /p wsaport= ) < port.txt
+.\adb.exe start-server > nul
+echo.
+.\adb.exe connect localhost:%wsaport%
 echo.
 echo What do you want to do?
 echo.
@@ -69,8 +75,6 @@ echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
 echo.
-.\adb.exe kill-server
-echo.
 echo Press any key to exit.
 pause > nul
 exit /b
@@ -99,11 +103,8 @@ ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
-(set /p wsaport= ) < port.txt
-set /p winpath=Enter path or Drag and drop file here:
-.\adb.exe start-server
 echo.
-.\adb.exe connect localhost:%wsaport%
+set /p winpath=Enter path or Drag and drop file here:
 echo.
 .\adb.exe push %winpath% "/storage/emulated/0/Windows"
 echo.
@@ -135,15 +136,10 @@ echo *              Pull files from WSA                 *
 ping localhost -n 1> nul
 echo *                                                  *
 echo ****************************************************
-(set /p wsaport= ) < port.txt
 echo.
 echo Enter path of file from WSA. For Example: Download/image.png. Don't include "/storage/emulated/0/"
 echo.
 set /p wsapath=Enter here:
-.\adb.exe start-server
-echo.
-.\adb.exe connect localhost:%wsaport%
-echo.
 .\adb.exe pull "/storage/emulated/0/%wsapath%" ".\WSA Files"
 echo.
 echo File saved to folder "WSA Files".
@@ -176,11 +172,8 @@ ping localhost -n 1> nul
 echo *                                                  *
 ping localhost -n 1> nul
 echo ****************************************************
-(set /p wsaport= ) < port.txt
-set /p apkpath=Enter path or Drag and drop .apk file:
-.\adb.exe start-server
 echo.
-.\adb.exe connect localhost:%wsaport%
+set /p apkpath=Enter path or Drag and drop .apk file:
 echo.
 .\adb.exe install %apkpath%
 pause
@@ -229,12 +222,6 @@ echo "ADB can be connected to 127.0.0.1:PORT". It is a 5-digit number.
 echo.
 set /p wsaport=Enter Port here:
 (echo=%wsaport%) >> port.txt
-echo.
-.\adb.exe kill-server > nul
-echo.
-.\adb.exe start-server > nul
-echo.
-.\adb.exe connect localhost:%wsaport%
 echo.
 .\adb shell mkdir -m 777 /storage/emulated/0/Windows > nul
 echo.
