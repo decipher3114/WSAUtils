@@ -26,7 +26,6 @@ echo.
 echo Voila! WSA is Running ...
 echo.
 .\adb.exe start-server
-echo.
 .\adb.exe devices
 echo What do you want to do?
 echo.
@@ -36,13 +35,9 @@ echo 3. Install Apk
 echo 4. Configure Script
 echo 5. Exit
 echo.
-set /p number= Enter number:
+choice /C 12345 /N /M "What do you want to do?"
 cls
-if /i "%number%" == "1" goto :pushfile
-if /i "%number%" == "2" goto :pullfile
-if /i "%number%" == "3" goto :installapk
-if /i "%number%" == "4" goto :configrun
-if /i "%number%" == "5" goto :exitmain
+goto menu%errorlevel%
 
 
 :nowsa
@@ -78,7 +73,7 @@ pause > nul
 exit /b
 
 
-:pushfile
+:menu1
 timeout 1 > nul
 echo ****************************************************
 ping localhost -n 1> nul
@@ -112,7 +107,7 @@ cls
 goto :main
 
 
-:pullfile
+:menu2
 timeout 1 > nul
 echo ****************************************************
 ping localhost -n 1> nul
@@ -135,10 +130,29 @@ ping localhost -n 1> nul
 echo *                                                  *
 echo ****************************************************
 echo.
-echo Enter path of file from WSA. For Example: Download/image.png. Don't include "/storage/emulated/0/"
+goto :opt1
+
+
+:opt1
+echo *************************************
+echo *               list                *
+echo *************************************
+echo.
+.\adb shell ls /storage/emulated/0/Windows
+echo.
+echo *************************************
+echo.
+echo This is list of file of Windows folder from WSA. If your file is not here, move it to Windows folder in WSA and refresh.
+echo.
+choice /C rc /N /M "Press 'C' to continue or 'R' to refresh"
+goto opt%errorlevel%
+
+
+
+:opt2
 echo.
 set /p wsapath=Enter here:
-.\adb.exe pull "/storage/emulated/0/%wsapath%" ".\WSA Files"
+.\adb.exe pull "/storage/emulated/0/Windows/%wsapath%" ".\WSA Files"
 echo.
 echo File saved to folder "WSA Files".
 echo.
@@ -147,7 +161,7 @@ cls
 goto :main
 
 
-:installapk
+:menu3
 timeout 1 > nul
 echo ****************************************************
 ping localhost -n 1> nul
@@ -179,7 +193,7 @@ cls
 goto :main
 
 
-:configrun
+:menu4
 timeout 1 > nul
 echo ****************************************************
 ping localhost -n 1> nul
@@ -226,7 +240,7 @@ cls
 goto :main
 
 
-:exitmain
+:menu5
 
 echo ****************************************************
 ping localhost -n 1> nul
