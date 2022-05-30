@@ -5,7 +5,7 @@ An interactive simple script for pulling, pushing files and installing apps in W
 This contains ADB files as well along with scripts.<br />
 No need to install adb separately.
 
-#How to
+# How to
 
 Download this repo as zip.<br />
 Run the WSAUtils.bat file.<br />
