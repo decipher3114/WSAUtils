@@ -2,12 +2,15 @@
 An interactive simple script for pulling, pushing files and installing apps in WSA.
 
 
-
 This contains ADB files as well along with scripts.<br />
 No need to install adb separately.
 
+#How to
 
-
+Download this repo as zip.<br />
+Run the WSAUtils.bat file.<br />
+Run Setup Configuration first time.<br />
+Follow instructions from script.
 
 # ADB
 
