@@ -14,8 +14,8 @@ Follow instructions from script.
 
 
 Note: This script wont work for WSA versions below 2204.40000.15.0 <br />
-Please update WSA to Android 12.
-
+Please update WSA to Android 12.<br />
+For Android 11, change branch to WSA-(A11).
 # ADB
 
 I am not the author of ADB.<br />
