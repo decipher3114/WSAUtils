@@ -13,8 +13,8 @@ Run Setup Configuration first time.<br />
 Follow instructions from script.
 
 
-Note: This script wont work for WSA versions below 2204.40000.15.0 <br />
-Please update WSA to Android 12.
+Note: This script will only work for WSA versions below 2204.40000.15.0 <br />
+Please switch to branch WSA-A12 if you are using Android 12.
 
 # ADB
 
