@@ -25,6 +25,10 @@ echo ****************************************************
 echo.
 echo Voila! WSA is Running ...
 echo.
+(set /p wsaport= ) < port.txt
+.\adb.exe start-server > nul
+echo.
+.\adb.exe connect localhost:%wsaport%
 .\adb.exe start-server
 .\adb.exe devices
 echo What do you want to do?
@@ -223,6 +227,14 @@ echo.
 echo This is one time configuration for WSA.
 echo.
 echo If you Run this file again, this will delete the previous config.
+echo.
+break>.\port.txt
+echo Port number can be found in Windows Subsystem for Android Settings. See the IP address under Developer Options.
+echo.
+echo "ADB can be connected to 127.0.0.1:PORT". It is a 5-digit number.
+echo.
+set /p wsaport=Enter Port here:
+(echo=%wsaport%) >> port.txt
 echo.
 echo So, don't run this unless you need to change.
 echo.
