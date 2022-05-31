@@ -12,6 +12,10 @@ Run the WSAUtils.bat file.<br />
 Run Setup Configuration first time.<br />
 Follow instructions from script.
 
+
+Note: This script wont work for WSA versions below 2204.40000.15.0 <br />
+Please update WSA to Android 12.
+
 # ADB
 
 I am not the author of ADB.<br />
