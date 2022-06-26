@@ -4,7 +4,7 @@ tasklist /fi "ImageName eq WsaService.exe" /fo csv 2>NUL | find /I "WsaService.e
 if "%ERRORLEVEL%"=="0"  (goto :main)  else (goto :nowsa)
 
 :main
-timeout 2 > nul
+cls
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -36,12 +36,11 @@ echo 4. Configure Script
 echo 5. Exit
 echo.
 choice /C 12345 /N /M "What do you want to do?"
-cls
 goto menu%errorlevel%
 
 
 :nowsa
-timeout 2 > nul
+cls
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -74,7 +73,7 @@ exit /b
 
 
 :menu1
-timeout 1 > nul
+cls
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -103,12 +102,12 @@ echo.
 echo.
 echo File saved to "Windows" folder in WSA.
 pause
-cls
 goto :main
 
 
 :menu2
-timeout 1 > nul
+:opt1
+cls
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -130,10 +129,6 @@ ping localhost -n 1> nul
 echo *                                                  *
 echo ****************************************************
 echo.
-goto :opt1
-
-
-:opt1
 echo *************************************
 echo *               list                *
 echo *************************************
@@ -150,6 +145,7 @@ goto opt%errorlevel%
 
 
 :opt2
+cls
 echo.
 set /p wsapath=Enter here:
 .\adb.exe pull "/storage/emulated/0/Windows/%wsapath%" ".\WSA Files"
@@ -162,7 +158,7 @@ goto :main
 
 
 :menu3
-timeout 1 > nul
+cls
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -189,12 +185,11 @@ set /p apkpath=Enter path or Drag and drop .apk file:
 echo.
 .\adb.exe install %apkpath%
 pause
-cls
 goto :main
 
 
 :menu4
-timeout 1 > nul
+cls
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
@@ -236,12 +231,11 @@ echo Windows files will be saved to "Windows" folder in WSA.
 echo.
 echo Configuration Completed.
 pause
-cls
 goto :main
 
 
 :menu5
-
+cls
 echo ****************************************************
 ping localhost -n 1> nul
 echo *                                                  *
