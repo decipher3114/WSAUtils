@@ -133,7 +133,7 @@ echo *************************************
 echo *               list                *
 echo *************************************
 echo.
-.\adb shell ls /storage/emulated/0/Windows
+.\adb.exe shell ls /storage/emulated/0/Windows
 echo.
 echo *************************************
 echo.
@@ -223,7 +223,7 @@ echo So, don't run this unless you need to change.
 echo.
 mkdir ".\WSA Files" > nul
 echo.
-.\adb shell mkdir -m 777 /storage/emulated/0/Windows > nul
+.\adb.exe shell mkdir -m 777 /storage/emulated/0/Windows > nul
 echo.
 echo Files from WSA will be saved in folder "WSA Files" in current directory.
 echo.
